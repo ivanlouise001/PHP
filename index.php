@@ -24,7 +24,7 @@
                 <h1 class="h2">Contact Tracing Platform</h1>
             </div>
 
-            <form class="form-signin" action="areas/index.html">
+            <form class="form-signin" action="areas/index.php">
                 <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
                 <label for="inputEmail" class="sr-only">Email</label>
