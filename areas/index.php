@@ -1,11 +1,28 @@
 <?php include '../public/header.php'; ?> 
 
+<?php
+$userid = $_SESSION['id'];
+
+
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $aid = mysqli_real_escape_string($connection,$_POST['areaid']);
+        $_SESSION['aid'] = $aid;
+
+}
+
+
+ ?>
+
+
+
 <div class="container-fluid">
     <div class="row">
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link active" href="areas/index.php">Manage areas</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="areas/index.php">Manage areas </a></li>
+
                 </ul>
             </div>
         </nav>
@@ -32,11 +49,11 @@
                  ?>
 
                  <div class="col-md-4">
-                    <form method="POST">
-                        <?php echo '<input type="hidden" name="id" value="'.$row["id"].'" >'?>
+                    <form action="" method="POST">
+                        <?php echo '<input type="hidden" name="areaid" value="'.$row["id"].'" >'?>
                         
                     <div class="card mb-4 shadow-sm">
-                        <a href="areas/detail.php" class="btn text-left area">
+                        <button id="view" type="submit" class="areabutton">
                             <div class="card-body">
                                 <?php echo '<h5 class="card-title">'.$row["name"].'</h5>'?>
                                 <?php echo '<p class="card-subtitle">'.$row["created_at"].'</p>'?>
@@ -52,7 +69,7 @@
                                  ?>
                                 <p class="card-text"> <?php echo "$uniquevisitors";?>  unique visitors</p>
                             </div>
-                        </a>
+                        </button>
                     </div>
                     </form>
                 </div>

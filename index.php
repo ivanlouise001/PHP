@@ -23,8 +23,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     if ($count == 1)
     {
-       $_SESSION['user'] = $username;
-      header("Location: areas/index.php");
+       
+                 $query = "SELECT id FROM users WHERE email = '$username' AND password = '$password'";
+                 $result = mysqli_query($connection, $query);
+                 while($row = mysqli_fetch_array($result))
+                {
+                    $_SESSION['id'] = $row["id"];
+                }
+                  header("Location: areas/index.php");
+
+
+
+
+     
         
     }
     else{
