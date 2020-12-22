@@ -1,5 +1,18 @@
 <?php include '../public/header.php'; ?> 
+<?php
 
+     $_SESSION['aid'];
+     $aid = $_SESSION['aid'];
+
+     $query = "SELECT * FROM tracers WHERE id = '$aid'";
+                 $result = mysqli_query($connection, $query);
+                 while($row = mysqli_fetch_array($result)){
+                    
+                 }
+
+
+
+ ?>
 <div class="container-fluid">
     <div class="row">
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">

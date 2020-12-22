@@ -1,13 +1,14 @@
 <?php include '../public/header.php'; ?> 
 
 <?php
-$userid = $_SESSION['id'];
+
 
 
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
         $aid = mysqli_real_escape_string($connection,$_POST['areaid']);
         $_SESSION['aid'] = $aid;
+        header("Location: detail.php");
 
 }
 
