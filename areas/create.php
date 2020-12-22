@@ -1,4 +1,4 @@
-
+<?php include '../public/header.php'; ?> 
 
 <div class="container-fluid">
     <div class="row">
@@ -61,3 +61,4 @@
     </div>
 </div>
 
+<?php include '../public/footer.php'; ?> 

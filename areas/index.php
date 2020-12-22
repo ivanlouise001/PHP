@@ -1,4 +1,4 @@
-
+<?php include '../public/header.php'; ?> 
 
 <div class="container-fluid">
     <div class="row">
@@ -21,32 +21,60 @@
             </div>
 
             <div class="row areas">
-                <div class="col-md-4">
+
+
+                <?php
+
+                 $query = "SELECT * FROM areas";
+                 $result = mysqli_query($connection, $query);
+                 while($row = mysqli_fetch_array($result))
+                {
+                 ?>
+
+                 <div class="col-md-4">
+                    <form method="POST">
+                        <?php echo '<input type="hidden" name="id" value="'.$row["id"].'" >'?>
+                        
                     <div class="card mb-4 shadow-sm">
                         <a href="areas/detail.php" class="btn text-left area">
                             <div class="card-body">
-                                <h5 class="card-title">WorldSkills Conference Room 1</h5>
-                                <p class="card-subtitle">{date registered}</p>
+                                <?php echo '<h5 class="card-title">'.$row["name"].'</h5>'?>
+                                <?php echo '<p class="card-subtitle">'.$row["created_at"].'</p>'?>
+                                
                                 <hr>
-                                <p class="card-text">3,546 unique visitors</p>
+                                <?php
+                                 $areadid = $row["id"];
+                                 $qry = "SELECT COUNT(DISTINCT user_id) AS area_id FROM tracers WHERE area_id = $areadid";
+                                 $res =  mysqli_query($connection, $qry);
+                                 $rw = mysqli_fetch_array($res);
+
+                                 $uniquevisitors =$rw['area_id'];
+                                 ?>
+                                <p class="card-text"> <?php echo "$uniquevisitors";?>  unique visitors</p>
                             </div>
                         </a>
                     </div>
+                    </form>
                 </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <a href="areas/detail.php" class="btn text-left area">
-                            <div class="card-body">
-                                <h5 class="card-title">WorldSkills Conference Room 2</h5>
-                                <p class="card-subtitle">{date registered}</p>
-                                <hr>
-                                <p class="card-text">2,471 unique visitors</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+
+
+
+
+
+                <?php 
+                }
+                ?>
+
+
+                
+              
+
+
+
             </div>
 
         </main>
     </div>
 </div>
+
+<?php include '../public/footer.php'; ?> 

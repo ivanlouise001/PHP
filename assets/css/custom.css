@@ -143,3 +143,12 @@ main {
     color: white;
     text-decoration: underline;
 }
+
+.loginerror{
+    display: flex;
+    justify-content: center;
+    background: #ff6961;
+    padding: 15px;
+    opacity: 0.9;
+    margin-bottom: 25px;
+}

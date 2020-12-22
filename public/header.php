@@ -1,3 +1,6 @@
+<?php include 'dbcon.php' ?>
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -21,7 +24,7 @@
     <span class="navbar-organizer w-100">{insert user name}</span>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" id="logout" href="index.php">Sign out</a>
+            <a class="nav-link" id="logout" href="public/logout.php">Sign out</a>
         </li>
     </ul>
 </nav>

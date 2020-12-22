@@ -1,3 +1,45 @@
+<?php include 'public/dbcon.php' ?>
+
+
+<?php
+session_start();
+
+$error = ' ';
+
+
+
+
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+    $username = mysqli_real_escape_string($connection,$_POST['email']);
+    $password = mysqli_real_escape_string($connection,$_POST['password']);
+
+    $sql = "SELECT id FROM users WHERE email = '$username' AND password = '$password'";
+    $result = mysqli_query($connection,$sql);
+    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+    $count = mysqli_num_rows($result);
+
+    if ($count == 1)
+    {
+       $_SESSION['user'] = $username;
+      header("Location: areas/index.php");
+        
+    }
+    else{
+        $error = '<h6  class="loginerror"> INVALID EMAIL/PASSWORD </h6>';
+        $display = "flex";
+        
+    }   
+
+}
+
+
+
+
+ ?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -24,8 +66,9 @@
                 <h1 class="h2">Contact Tracing Platform</h1>
             </div>
 
-            <form class="form-signin" action="areas/index.php">
+            <form class="form-signin" action="" method="POST">
                 <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                <?php echo "$error";  ?>
 
                 <label for="inputEmail" class="sr-only">Email</label>
                 <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email" autofocus>
